@@ -1,0 +1,13 @@
+---
+# tasks file for amaudy.nginx
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Remove default virtualhost configuration
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify:
+    - Restart Nginx
